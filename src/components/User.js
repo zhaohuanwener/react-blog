@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react'
-import { Dropdown, Avatar, Menu, Icon, Button, message } from 'antd'
+import { NavDropdown, MenuItem } from 'react-bootstrap'
 
 export default class User extends Component {
     constructor(props) {
@@ -16,26 +16,20 @@ export default class User extends Component {
     }
 
     render() {
-        const { isLogin } = this.state
-        if (!isLogin) {
-            return <div>
-                <Button ghost size="small">注册</Button>
-                <Button ghost size="small">登陆</Button>
-            </div>
-        }
-        return <div>
-            <span style={style.username}> {this.state.userName} </span>
-            <Avatar src={this.state.avatarSrc} size="large"></Avatar>
-            <Button size="small" ghost target="_blank" onClick={this.logout}>退出</Button>
-        </div>
+        return <NavDropdown eventKey={3} title={this.state.userName} style={style.MenuItem}
+       id="basic-nav-dropdown">
+            <MenuItem eventKey={3.1}>个人中心</MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey={3.4}>退出登陆</MenuItem>
+        </NavDropdown>
             
     }
 }
 
 const style = {
-    username: {
-        marginBottom: 20,
-
+    MenuItem: {
+        minWidth: 160,
+        // border: '1px solid red'
     }
 }
 

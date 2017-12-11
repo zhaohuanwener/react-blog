@@ -1,33 +1,69 @@
 import React, { Component } from 'react'
-import { Menu, Icon, SubMenu, Avatar } from 'antd'
+import { NavItem, Nav, Navbar, NavDropdown, MenuItem, Modal } from 'react-bootstrap'
 import User from './User'
+import Login from './Login/Login'
 
+const { Brand } = Navbar
 
 class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            current: 'mail'
+            activeKey: 1,
+            isLogin: false,
+            showModal: false
         }
     }
 
+    handleSelect = (key) => {
+        this.setState({
+            activeKey: key
+        })
+    }
+
+    showLogin = () => {
+        this.setState({
+            showModal: true,
+            reg: false
+        })
+    }
+
+    showReg = () => {
+        this.setState({
+            showModal: true,
+            reg: true
+        })
+    }
+
+    setUserBox = () => {
+        const { isLogin } = this.state
+        if (!isLogin) {
+            return <Nav pullRight>
+                     <NavItem eventKey={ 1 } href="#" onClick={this.showLogin}>登陆</NavItem>
+                     <NavItem eventKey={ 2 } href="#" onClick={this.showReg}>注册</NavItem>
+                   </Nav>
+        }
+        return <Nav pullRight>
+                 <User/>
+               </Nav>
+    }
+
     render() {
-        return <Menu
-            onClick={this.handleClick}
-            selectedKeys={[this.state.current]}
-            theme="dark"
-            mode="horizontal"
-            style={style.nav}    
-        >
-              
-        <Menu.Item key="mail" className="menuItem">
-          <Icon type="home" /> 首页
-        </Menu.Item>
-            <div style={style.userBox}>
-                <User ></User>
-            </div>    
-        
-      </Menu>
+        return <div>
+                 <Navbar>
+                   <Navbar.Header>
+                     <Brand>
+                       <a href="/">首页</a>
+                     </Brand>
+                   </Navbar.Header>
+                   <Nav>
+                     <NavItem eventKey={ 1 } href="#">Link</NavItem>
+                     <NavItem eventKey={ 2 } href="#">Link</NavItem>
+                   </Nav>
+                   { this.setUserBox() }
+                 </Navbar>
+                 <Login show={this.state.showModal} reg={this.state.reg}/>
+               </div>
     }
 }
 
@@ -41,7 +77,7 @@ const style = {
     },
     nav: {
         height: 46,
-        // border: '1px solid red',
+    // border: '1px solid red',
     }
 }
 
