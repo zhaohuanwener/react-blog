@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import { NavItem, Nav, Navbar, NavDropdown, MenuItem, Modal } from 'react-bootstrap'
+import PropTypes from 'prop-types';
+
 import User from './User'
-import Login from './Login/Login'
+import Login from './Login'
 
 const { Brand } = Navbar
 
 class Header extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            activeKey: 1,
-            isLogin: false,
-            showModal: false
-        }
-    }
 
     handleSelect = (key) => {
         this.setState({
@@ -36,7 +30,7 @@ class Header extends Component {
     }
 
     setUserBox = () => {
-        const { isLogin } = this.state
+        const { isLogin } = this.props
         if (!isLogin) {
             return <Nav pullRight>
                      <NavItem eventKey={ 1 } href="#" onClick={this.showLogin}>登陆</NavItem>
@@ -62,23 +56,20 @@ class Header extends Component {
                    </Nav>
                    { this.setUserBox() }
                  </Navbar>
-                 <Login show={this.state.showModal} reg={this.state.reg}/>
+                 <Login/>
                </div>
     }
 }
 
-const style = {
-    userBox: {
-        border: '1px solid red',
-        width: 250,
-        height: 46,
-        float: 'right',
-        paddingTop: 10
-    },
-    nav: {
-        height: 46,
-    // border: '1px solid red',
-    }
+Header.defaultProps = {
+    // activeKey: 1,
+    isLogin: false,
+    showModal: false
 }
+
+// Header.propTypes = {
+//     isLogin: PropTypes.bool.isRequired,
+//     showModal: false
+// }
 
 export default Header
