@@ -16,17 +16,14 @@ class Header extends Component {
     }
 
     showLogin = () => {
-        this.setState({
-            showModal: true,
-            reg: false
-        })
+        const { toogleLoginModal } = this.props
+        toogleLoginModal()
     }
 
     showReg = () => {
-        this.setState({
-            showModal: true,
-            reg: true
-        })
+        const { toogleRegModal, toogleLoginModal } = this.props
+        toogleRegModal()
+        toogleLoginModal()
     }
 
     setUserBox = () => {
@@ -56,20 +53,27 @@ class Header extends Component {
                    </Nav>
                    { this.setUserBox() }
                  </Navbar>
-                 <Login/>
+                 <Login show={ this.props.showModal }
+                    reg={ this.props.reg } 
+                    loading={ this.props.loading } 
+                    toogleLoginModal={ this.props.toogleLoginModal }
+                    toggoleLoading={this.props.toggoleLoading}
+                 />
                </div>
     }
 }
 
+
 Header.defaultProps = {
-    // activeKey: 1,
+    showModal: false,
     isLogin: false,
-    showModal: false
+    reg: false
 }
 
-// Header.propTypes = {
-//     isLogin: PropTypes.bool.isRequired,
-//     showModal: false
-// }
+Header.propTypes = {
+    toogleLoginModal: PropTypes.func.isRequired,
+    toggoleLoading: PropTypes.func.isRequired,
+}
+
 
 export default Header

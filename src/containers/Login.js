@@ -1,30 +1,23 @@
 import { connect } from 'react-redux'
-import { toogle_loading, toogle_login_modal } from '../actions'
+import { toogleLoading } from '../actions'
 import Login from '../components/Login'
 
-const mapStateToProps = (state, ownProps) => {
-    const { login } = state
-    console.log(state, ownProps, 'mapStateToProps container')
-    return {
-        loading: login.loading,
-        show: login.show
-    }
+const mapStateToProps = (state) => {
+    console.log('statestatestatestate', state)
+    return state.login
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    console.log('mapDispatchToProps ownProps', ownProps, toogle_login_modal(ownProps.show))
+    console.log('mapDispatchToProps ownProps', ownProps)
     return {
-        toggoleLoading: () => {
-            dispatch(toogle_loading(ownProps.loading))
-        },
-        toggoleModal: () => {
-            dispatch(toogle_login_modal(ownProps.show))
+        toogleLoading: () => {
+            dispatch(toogleLoading())
         }
     }
 }
 
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    // mapStateToProps,
+    // mapDispatchToProps
 )(Login)

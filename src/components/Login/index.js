@@ -15,10 +15,18 @@ import {
 const { Header, Body, Footer, Title } = Modal
 
 class Login extends Component {
+  constructor(props) {
+    super(props)
+    console.log('login constructor', props)
+  }
+
+    componentWillReceiveProps(props) {
+      // console.log('componentWillReceiveProps', props)
+    }
 
     hide = () => {
-        const { toggoleModal } = this.props
-        toggoleModal()
+        const { toogleLoginModal } = this.props
+        toogleLoginModal()
     }
 
     repPwd = () => {
@@ -37,7 +45,7 @@ class Login extends Component {
     }
 
     submit = () => {
-        const { loading, dispatch, toggoleLoading } = this.props
+        const { toggoleLoading } = this.props
         toggoleLoading()
     }
 
@@ -60,7 +68,7 @@ class Login extends Component {
                    <Body>
                      <div className="form-box" onKeyDown={this.onFormEnter}>
                        <Form horizontal>
-                         <FormGroup controlId="formHorizontalEmail" className="form-group">
+                         <FormGroup className="form-group">
                            <InputGroup>
                              <InputGroup.Addon>
                                <Glyphicon glyph="user" />
@@ -68,7 +76,7 @@ class Login extends Component {
                              <FormControl type="text" placeholder="用户名" />
                            </InputGroup>
                          </FormGroup>
-                         <FormGroup controlId="formHorizontalEmail" className="form-group">
+                         <FormGroup className="form-group">
                            <InputGroup>
                              <InputGroup.Addon>
                                <Glyphicon glyph="lock" />
@@ -98,7 +106,7 @@ class Login extends Component {
 
 Login.defaultProps = {
     loading: false,
-    show: true,
+    show: false,
     reg: false,
     title: '登陆'
 }
@@ -108,8 +116,8 @@ Login.propTypes = {
     show: PropTypes.bool,
     reg: PropTypes.bool,
     title: PropTypes.string,
-    toggoleLoading: PropTypes.func.isRequired,
-    toggoleModal: PropTypes.func.isRequired,
+    // toggoleLoading: PropTypes.func.isRequired,
+    // toggoleModal: PropTypes.func.isRequired,
 }
 
 export default Login

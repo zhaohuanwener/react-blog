@@ -4,6 +4,7 @@ import {
     LOGOUT,
     TOOGLE_LOGIN_MODAL,
     TOOGLE_LOADING,
+    TOOGLE_REG_MODAL,
 } from './types'
 
 export const login = (text, userData) => ({
@@ -16,18 +17,9 @@ export const logout = (usernma) => ({
     usernma
 })
 
-export const toogle_loading = (loading) => {
-    console.log('toogle_loading', loading, TOOGLE_LOADING)
-    return {
-        type: TOOGLE_LOADING,
-        loading
-    }
-}
+export const toogleLoading = () => ({type: TOOGLE_LOADING})
 
-export const toogle_login_modal = (show) => {
-    console.log('toogle_login_modal', show, TOOGLE_LOGIN_MODAL)
-    return {
-        type: TOOGLE_LOGIN_MODAL,
-        show
-    }
-}
+export const toogleLoginModal = () => ({type: TOOGLE_LOGIN_MODAL})
+
+export const toogleRegModal = () => ({ type: TOOGLE_REG_MODAL})
+
