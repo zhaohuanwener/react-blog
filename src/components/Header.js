@@ -16,13 +16,14 @@ class Header extends Component {
     }
 
     showLogin = () => {
-        const { toogleLoginModal } = this.props
+        const { toogleLoginModal, toogleRegModal} = this.props
         toogleLoginModal()
+        toogleRegModal(false)
     }
 
     showReg = () => {
         const { toogleRegModal, toogleLoginModal } = this.props
-        toogleRegModal()
+        toogleRegModal(true)
         toogleLoginModal()
     }
 
@@ -55,7 +56,6 @@ class Header extends Component {
                  </Navbar>
                  <Login show={ this.props.showModal }
                     reg={ this.props.reg } 
-                    loading={ this.props.loading } 
                     toogleLoginModal={ this.props.toogleLoginModal }
                     toggoleLoading={this.props.toggoleLoading}
                  />

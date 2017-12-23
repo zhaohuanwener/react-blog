@@ -6,14 +6,13 @@ const mapStateToProps = (state) => state.header
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        toogleRegModal: () => {
-            dispatch(toogleRegModal())
+        toogleRegModal: (reg) => {
+            dispatch(toogleRegModal(reg))
         },
         toogleLoginModal: () => {
             dispatch(toogleLoginModal())
         },
         toggoleLoading: () => {
-            console.log('toggoleLoading')
             dispatch(toogleLoading())
         }
     }
