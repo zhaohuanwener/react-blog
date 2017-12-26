@@ -35,10 +35,23 @@ class Login extends Component {
     this.setState({ title })
   }
 
+  resetState = () => {
+    this.setState({
+      usernameValidationState: null,
+      pwdValidationState: null,
+      repPwdValidationState: null,
+      username: '',
+      pwd: '',
+      repPwd: '',
+      loading: false,
+    })
+  }
+
   hide = () => {
     const { toogleLoginModal, toggoleLoading } = this.props
     toogleLoginModal()
     this.hideLoading()
+    this.resetState()
   }
 
   hideLoading = () => {
@@ -94,7 +107,9 @@ class Login extends Component {
       if (!reg) {
         return this.showLoading()
       }
-      this.showLoading()
+      if (repPwd) {
+        this.showLoading()
+      }
     }
   }
 
@@ -134,7 +149,7 @@ class Login extends Component {
                   <FormControl type="text" placeholder="用户名" onChange={(e) => {
                     this.inputChange(e, 'username')
                   }}/>
-                  <FormControl.Feedback />
+                  {/* <FormControl.Feedback /> */}
                 </InputGroup>
               </FormGroup>
 
