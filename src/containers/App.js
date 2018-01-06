@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import WriteBlog from './writeBlog'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ import PropTypes from 'prop-types';
 const App = () => {
   return <div>
     <Header />
+    <WriteBlog />
   </div>
 }
 

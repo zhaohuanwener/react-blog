@@ -1,0 +1,23 @@
+.test_border(@show_border) when(@show_border) {
+    border: 1px solid red
+}
+
+// 元素垂直和水平都居中
+.center(@test: false, @width: 400px, @height: 300px) {
+    width: @width;
+    height: @height;
+    left: 50%;
+    top: 50%;
+    margin-left: -(@width / 2);
+    margin-top: -(@height / 2);
+    position: absolute; 
+    .test_border(@test)
+}
+
+// 元素水平居中
+.middle(@width: 400px, @height: 300px, @test: false) {
+    width: @width;
+    height: @height;
+    margin: 0 auto;
+    .test_border(@test)
+}
