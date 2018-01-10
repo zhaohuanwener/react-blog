@@ -19,7 +19,6 @@ const header = (state = {}, action) => {
             })
         
         case TOOGLE_LOGIN_MODAL_TITLE:
-            console.log(action)    
             return _.assign({}, state, {    
                 title: action.title
             })   

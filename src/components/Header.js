@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
 import { NavItem, Nav, Navbar, NavDropdown, MenuItem, Modal } from 'react-bootstrap'
 import PropTypes from 'prop-types';
+import {
+    NavLink,
+    Route, 
+    Switch,
+    Link
+} from 'react-router-dom'
+
+import { push } from 'react-router-redux'
+import createBrowserHistory from 'history/createBrowserHistory'
+const history = createBrowserHistory()
+
+// import Header from '../containers/Header'
+import WriteBlog from '../containers/WriteBlog'
 
 import User from './User'
 import Login from './Login'
@@ -42,24 +55,27 @@ class Header extends Component {
 
     render() {
         return <div>
-                 <Navbar>
-                   <Navbar.Header>
-                     <Brand>
-                       <a href="/">首页</a>
-                     </Brand>
-                   </Navbar.Header>
-                   <Nav>
-                     <NavItem eventKey={ 1 } href="#">Link</NavItem>
-                     <NavItem eventKey={ 2 } href="#">Link</NavItem>
-                   </Nav>
-                   { this.setUserBox() }
-                 </Navbar>
-                 <Login show={ this.props.showModal }
-                    reg={ this.props.reg } 
-                    toogleLoginModal={ this.props.toogleLoginModal }
-                    toggoleLoading={this.props.toggoleLoading}
-                 />
-               </div>
+            <Navbar
+                collapseOnSelect
+                // inverse
+                // fixedTop
+            >
+                <Navbar.Header>
+                    <Brand>
+                        <a href="/">首页</a>
+                    </Brand>
+                </Navbar.Header>
+                <ul className="nav navbar-nav">
+                    <li className="active"><NavLink to="/write">写博客</NavLink></li>
+                </ul>
+            { this.setUserBox() }
+            </Navbar>
+            <Login show={ this.props.showModal }
+            reg={ this.props.reg } 
+            toogleLoginModal={ this.props.toogleLoginModal }
+            toggoleLoading={this.props.toggoleLoading}
+            />
+        </div>
     }
 }
 

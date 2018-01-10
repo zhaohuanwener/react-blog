@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
 import login from './login'
 import header from './header'
+// import { routerReducer } from 'react-router-redux'
 
-export default combineReducers({
+export default {
     login,
     header
-})
+}
 

@@ -4,7 +4,7 @@ import Header from '../components/Header'
 
 const mapStateToProps = (state) => state.header
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         toogleRegModal: (reg) => {
             dispatch(toogleRegModal(reg))
@@ -17,7 +17,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-
 
 export default connect(
     mapStateToProps,

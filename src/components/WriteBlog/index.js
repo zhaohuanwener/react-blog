@@ -44,7 +44,7 @@ class MyEditor extends React.Component {
             <div className="editor">
                 <Form horizontal >
                     <FormGroup className="editor-input">
-                        <FormControl type="text" placeholder="标题" onChange={this.onTitleChange}/>
+                        <FormControl type="text" placeholder="标题" onChange={this.onTitleChange} focus/>
                     </FormGroup>
 
                     <FormGroup className="editor-input">
