@@ -3,9 +3,7 @@ import { HashRouter, Switch, Link, Router, Route, BrowserRouter } from 'react-ro
 
 import Header from '../containers/Header'
 import WriteBlog from './WriteBlog'
-import Body from './Body'
-// import createBrowserHistory from 'history/createBrowserHistory'
-// const history = createBrowserHistory()
+import Body from '../components/Body'
 
 class App extends Component {
     constructor(props) {
@@ -17,7 +15,7 @@ class App extends Component {
         return <BrowserRouter>
              <div>
                 <Header/>
-                <Route path="/write" component={WriteBlog}/>
+                <Body/>
             </div>
         </BrowserRouter>
     }

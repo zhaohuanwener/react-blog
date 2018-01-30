@@ -1,0 +1,72 @@
+@itemMarginLeft: 10px;
+
+.item {
+    line-height: 30px;
+}
+
+
+.item-tab {
+    .normal-item;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 2px;
+ }
+
+.item-tab-top {
+    .item-tab;
+    background-color: #80bd01;
+    color: white;
+}
+
+.list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.normal-item {
+    margin-left: 6px;
+    margin-top: 5px;
+    display: inline-flex;
+    border-radius: 0;
+}
+
+.item-tab-other {
+    .item-tab;
+    background-color: #e5e5e5;
+    color: #999
+}
+
+.item-count {
+   .normal-item;
+   width: 70px;
+}
+
+.item-avatar {
+    width: 30px;
+    height: 30px
+}
+
+.item-title {
+    .normal-item;
+    width: 680px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space:nowrap;//禁止换行
+    overflow:hidden;//超出的隐藏
+    a {
+        color: black;
+    }
+}
+
+
+.item-time {
+    .normal-item;
+    position: absolute;
+    right: 5px;
+}

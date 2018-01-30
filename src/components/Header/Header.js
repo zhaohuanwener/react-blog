@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { NavItem, Nav, Navbar, NavDropdown, MenuItem, Modal } from 'react-bootstrap'
+import { NavItem, 
+    Nav, 
+    Navbar, 
+    NavDropdown, 
+    MenuItem, 
+    Modal, 
+    FormGroup, 
+    FormControl 
+} from 'react-bootstrap'
 import PropTypes from 'prop-types';
 import {
     NavLink,
@@ -8,15 +16,12 @@ import {
     Link
 } from 'react-router-dom'
 
-import { push } from 'react-router-redux'
-import createBrowserHistory from 'history/createBrowserHistory'
-const history = createBrowserHistory()
+import './Header.less'
+import logo from '../../assets/cnode_logo.svg'
+import WriteBlog from '../../containers/WriteBlog'
 
-// import Header from '../containers/Header'
-import WriteBlog from '../containers/WriteBlog'
-
-import User from './User'
-import Login from './Login'
+import User from '../User'
+import Login from '../Login'
 
 const { Brand } = Navbar
 
@@ -57,16 +62,26 @@ class Header extends Component {
         return <div>
             <Navbar
                 collapseOnSelect
-                // inverse
+                inverse
                 // fixedTop
             >
                 <Navbar.Header>
                     <Brand>
-                        <a href="/">首页</a>
+                        <a href="/">
+                            {/* <img src={logo} alt="" className="logo"/> */}
+                            
+                        </a>
                     </Brand>
+                    <Navbar.Collapse>
+                        <Navbar.Form pullLeft>
+                            <FormGroup>
+                                <FormControl type="text" className="search"/>
+                            </FormGroup>
+                        </Navbar.Form>
+                    </Navbar.Collapse>
                 </Navbar.Header>
                 <ul className="nav navbar-nav">
-                    <li className="active"><NavLink to="/write">写博客</NavLink></li>
+                    {/* <li className="active"><NavLink to="/write">写博客</NavLink></li> */}
                 </ul>
             { this.setUserBox() }
             </Navbar>

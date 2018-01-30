@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { toogleRegModal, toogleLoginModal, toogleLoading } from '../actions'
-import Header from '../components/Header/Header'
+import List from '../components/List/List'
 
-const mapStateToProps = (state) => state.header
+const mapStateToProps = (state) => state.List
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header)
+)(List)
