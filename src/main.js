@@ -5,7 +5,7 @@ import { HashRouter, Route, Redirect, Switch, BrowserRouter, Router } from 'reac
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore, ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
+import thunk from 'redux-thunk'
 import createBrowserHistory from 'history/createBrowserHistory'
 const history = createBrowserHistory()
 
@@ -17,14 +17,17 @@ import Body from './containers/Body'
 import WriteBlog from './containers/WriteBlog'
 import reducer from './reducers'
 
-const middleware = routerMiddleware(history)
+const middleware = [
+  routerMiddleware(history),
+  thunk
+]
 
 const store = createStore(
   combineReducers({
     ...reducer,
     routing: routerReducer
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(...middleware)
 )
 
 const root = document.querySelector('#app')

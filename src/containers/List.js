@@ -1,19 +1,21 @@
 import { connect } from 'react-redux'
-import { toogleRegModal, toogleLoginModal, toogleLoading } from '../actions'
+import { toogleRegModal, toogleLoginModal, toogleLoading, getTopics } from '../actions'
 import List from '../components/List/List'
 
-const mapStateToProps = (state) => state.List
+const mapStateToProps = (state) => {
+    console.log('state', state.list)
+    return state.list
+}
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        toogleRegModal: (reg) => {
-            dispatch(toogleRegModal(reg))
+        pageClick: (page, tab) => {
+            console.log(page, tab)
+            // dispatch(pageClick(page))
         },
-        toogleLoginModal: () => {
-            dispatch(toogleLoginModal())
-        },
-        toggoleLoading: () => {
-            dispatch(toogleLoading())
+        getTopics: (page, tab) => {
+            console.log('get topics for tab', tab)
+            dispatch(getTopics(page, tab))
         }
     }
 }

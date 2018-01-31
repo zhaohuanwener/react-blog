@@ -61,7 +61,7 @@ class Header extends Component {
     render() {
         return <div>
             <Navbar
-                collapseOnSelect
+                // collapseOnSelect
                 inverse
                 // fixedTop
             >
@@ -69,7 +69,7 @@ class Header extends Component {
                     <Brand>
                         <a href="/">
                             {/* <img src={logo} alt="" className="logo"/> */}
-                            
+                            {/* 首页 */}
                         </a>
                     </Brand>
                     <Navbar.Collapse>
@@ -81,7 +81,7 @@ class Header extends Component {
                     </Navbar.Collapse>
                 </Navbar.Header>
                 <ul className="nav navbar-nav">
-                    {/* <li className="active"><NavLink to="/write">写博客</NavLink></li> */}
+                    <li><a href="/">首页</a></li>
                 </ul>
             { this.setUserBox() }
             </Navbar>

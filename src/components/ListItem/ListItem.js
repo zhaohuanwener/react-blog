@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { HashRouter, Switch, Link, Router, Route, BrowserRouter } from 'react-router-dom'
+import { Link, BrowserRouter } from 'react-router-dom'
 import { NavItem, 
-    ListGroup,
     ListGroupItem,
     Image
 } from 'react-bootstrap'

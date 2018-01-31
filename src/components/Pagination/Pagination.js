@@ -9,11 +9,14 @@ import {
 
 class Pager extends Component {
     render() {
-        const { total = 10, active = 1 } = this.props
+        const { total = 10, active = 1, max = 10, pageClick, tab } = this.props
+        const totalCount = total < max ? total : max
         const items = []
-        for (let i = 1; i <= total; i++) {
+        for (let i = 1; i <= totalCount; i++) {
             items.push(
-                <Button key={`page-${i}`} bsStyle={active === i ? 'primary' : 'default'}>{i}</Button>
+                <Button key={`page-${i}`} bsStyle={active === i ? 'primary' : 'default'} onClick={() => {
+                    pageClick(i, tab)
+                }}>{i}</Button>
             )
         }
         return <ButtonToolbar>
@@ -21,6 +24,10 @@ class Pager extends Component {
           {items}
         </ButtonGroup>
       </ButtonToolbar>;
+    }
+
+    renderItems = () => {
+
     }
 }
 

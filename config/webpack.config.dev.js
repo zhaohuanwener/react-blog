@@ -7,13 +7,7 @@ const proxy = require('./proxy')
 
 
 module.exports = merge(baseWebpackConfig, {
-    devServer: {
-        hot: true,
-        stats: 'errors-only',
-        compress: false,
-        inline: true,
-        proxy
-    },
+    devtool: '#cheap-module-eval-source-map',
     plugins: [
         new webpack.DefinePlugin({
           'process.env': {

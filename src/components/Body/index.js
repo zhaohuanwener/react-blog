@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Route } from 'react-router-dom'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 import WriteBlog from '../WriteBlog'
 import {
     Form,
@@ -11,22 +11,21 @@ import {
     Button
 } from 'react-bootstrap'
 
-import List from '../List/List'
+import List from '../../containers/List'
+// import List from '../List/List'
+import Topic from '../Topic/Topic'
 import './Body.less'
-import topics from './topics'
+// import topics from './topics'
 
 class Body extends React.Component {
-    // constructor(props) {
-    //     super(props)
-    //     console.log(props)
-    // }
     render() {
         const { match } = this.props
         return <div className="body">
-            {/* <h1>body</h1> */}
-            <List data={topics} activePage={1}/>
-            {/* <Route path="/topic/:id" component={WriteBlog}/> */}
-            {/* <Route to> */}
+            <Switch>
+                <Route path="/topic/:id" component={Topic}/>
+                <Route path="/topics/:tab" component={List}/>
+                <Route path="/" component={List}/>
+            </Switch>
         </div>
     }
 }
