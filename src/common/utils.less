@@ -1,5 +1,5 @@
-.test_border(@show_border) when(@show_border) {
-    border: 1px solid red
+.test_border(@show_border: true, @color: red) when(@show_border) {
+    border: 1px solid @color
 }
 
 // 元素垂直和水平都居中

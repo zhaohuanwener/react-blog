@@ -14,7 +14,12 @@ const server = new WebpackDevServer(complier, {
     inline: true,
     proxy,
     overlay: true,
-    quiet: true,
+    historyApiFallback: true,
+    // set (app) {
+    //     app.use('*', (req, res) => {
+
+    //     })
+    // }
 })
 
 server.listen(8080)

@@ -1,0 +1,24 @@
+@import '../../common/utils.less';
+@p_width: 200px;
+@p_height: 150px;
+
+@text_w: 100px;
+@text_h: 50px;
+
+.no-data {
+    .center(@width:@p_width,@height:@p_height);
+    filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6; 
+    text-align: center;
+    .text {
+        .center(@width:@text_w,@height:@text_h);
+        // color: white;
+        line-height: @text_h
+    }
+}
+.show {
+    display: block
+}
+
+.hide {
+    display: none
+}

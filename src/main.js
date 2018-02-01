@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 import createBrowserHistory from 'history/createBrowserHistory'
 const history = createBrowserHistory()
 
+
 // import browserHistory from 'history/browserHistory'
 
 
@@ -34,7 +35,6 @@ const root = document.querySelector('#app')
 
 // console.log('BrowserHistory', h)
 
-// const history = syncHistoryWithStore(browserHistory, store)
 
 // ReactDom.render(<Provider store={store}>
 //     { /* ConnectedRouter will use the store from Provider automatically */ }

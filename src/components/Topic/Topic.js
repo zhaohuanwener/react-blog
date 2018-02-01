@@ -1,17 +1,34 @@
 import React, { Component } from 'react'
-import data from './data'
 import moment from 'moment'
 import { renderContent , formatDate } from '../../common/utils.js'
-
+import NoData from '../NoData/NoData'
+import Loading from '../Loading/Loading'
 import Comments from '../Comments/Comments'
+import {
+    isUndefined,
+    isNull
+} from 'lodash'
 
 
 import './Topic.less'
 class Topic extends Component {
+
+    componentDidMount() {
+        const { getTopicDetail, match } = this.props
+        const { id } = match.params
+        getTopicDetail(id)
+    }
+
     render() {
-        const { match, topic = data } = this.props
+        const { match, topic } = this.props
+        if (_.isUndefined(topic)) {
+            return <Loading show={true}></Loading>
+        }
+        if (_.isNull(topic)) {
+            return <NoData></NoData>
+        }
         return <div>
-            <div className="panel  content">
+            <div className="panel topic-content">
                 <div className="panel-heading">
                     <h4>{topic.title}</h4>
                     <span className="author">

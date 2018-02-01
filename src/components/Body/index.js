@@ -13,7 +13,7 @@ import {
 
 import List from '../../containers/List'
 // import List from '../List/List'
-import Topic from '../Topic/Topic'
+import Topic from '../../containers/Topic'
 import './Body.less'
 // import topics from './topics'
 

@@ -1,10 +1,10 @@
 import axios from 'axios'
-// const req = axios.create({
-//     baseURL: ''
-// })
+const req = axios.create({
+    baseURL: '/topics'
+})
 
-export const getTopic = (tab, action) => dispatch => {
-    return axios.get(`/topics/${tab}`).then(res => {
-        dispatch(action(res.data))
-    })
-}
+// 获取列表
+export const topicsGetter = (tab, page) => req.get(`/list?tab=${tab}&page=${page}`).then(res => res.data.data)
+
+// 获取文章详情
+export const topicDetailGetter = (id) => req.get(`/detail/${id}`).then(res => res.data.data)

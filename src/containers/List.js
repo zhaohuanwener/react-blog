@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
-import { toogleRegModal, toogleLoginModal, toogleLoading, getTopics } from '../actions'
+import { getTopics, tabSelect } from '../actions'
 import List from '../components/List/List'
 
 const mapStateToProps = (state) => {
-    console.log('state', state.list)
     return state.list
 }
 
@@ -13,9 +12,13 @@ const mapDispatchToProps = (dispatch, props) => {
             console.log(page, tab)
             // dispatch(pageClick(page))
         },
-        getTopics: (page, tab) => {
+        getTopics: (tab, page) => {
             console.log('get topics for tab', tab)
-            dispatch(getTopics(page, tab))
+            dispatch(getTopics(tab, page))
+        },
+        tabSelect: (tab) => {
+            dispatch(tabSelect(tab))
+            // dispatch(getTopics(tab, 1))
         }
     }
 }

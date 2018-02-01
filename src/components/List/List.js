@@ -8,78 +8,56 @@ import {
     NavLink
 } from 'react-router-dom'
 
-// import {
-//     getTopics
-// } from '../../actions'
-
 import './List.less'
+import ListNav from '../ListNav/ListNav'
 import ListItem from '../ListItem/ListItem'
 import Pager from '../Pagination/Pagination'
-// import topics from './topics'
+import Loading from '../Loading/Loading'
+import NoData from '../NoData/NoData'
+import {
+    isUndefined,
+    isNull
+} from 'lodash'
 
-const tabConfig = [{
-    tab: 'all',
-    name: '全部'
-}, {
-    tab: 'share',
-    name: '分享'
-}, {
-    tab: 'ask',
-    name: '问答',
-}, {
-    tab: 'good',
-    name: '精华'
-}, {
-    tab: 'job',
-    name: '招聘'
-}]
 
 class List extends Component {
-
     componentDidMount() {
-        const { getTopics, dispatch, match } = this.props
-        const { tab = 'all' } = match.params
-        getTopics(tab, 1)
+        const { getTopics, activeTab } = this.props
+        getTopics(activeTab, 1)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const nextTab = nextProps.activeTab
+        const { getTopics, activeTab } = this.props
+        if (nextTab !== activeTab) {
+            getTopics(nextTab, 1)
+        }
     }
 
     render() {
-        const { activeTab, tabSelect, pageClick, match, topics } = this.props
-        console.log('list render ', topics)
-        const { tab = 'all' } = match.params
+        const { tabs, activeTab, tabSelect, pageClick, match, topics, loading } = this.props
         return <div className="topic-list">
-            <ul className="nav nav-pills">
-                    {this.renderNav(tab)}
-            </ul>
+            <ListNav tabs={tabs} activeTab={activeTab} tabSelect={tabSelect}></ListNav>
             <ListGroup>
-                {this.renderList(topics)}
+                <Loading show={loading}></Loading>
+                {this.renderList(topics, tabs)}
             </ListGroup>
-            <div className="pager">
-                <Pager active={2} total={20} pageClick={pageClick} tab={tab}/>
+            <div className="pager-box">
+                <Pager active={2} total={20} pageClick={pageClick} tab={activeTab}/>
             </div>
         </div>
     }
     
-    renderNav = (tab) => tabConfig.map(tc => {
-        const className = tc.tab === tab ? 'active' : ''
-        const url = `/topics/${tc.tab}`
-        return <li role="presentation" className={className} key={`tab-${tc.tab}`}><NavLink to={url}>{tc.name}</NavLink></li>
-    })
 
-    renderList = (topics = []) => {
-        if (!list.length) {
-            return 
+    renderList (topics, tabs) {
+        if (isUndefined(topics)) {
+            topics = []
         }
-        const { match } = this.props
-        const ALLTAB = 'all'
-        const { tab = ALLTAB } = match.params
-        const data = tab === ALLTAB ? topics : topics.filter(t => {
-            if (tab === 'good') {
-                return t.good
-            }
-            return t.tab === tab
-        })
-        return data.map(function(d) {
-            const tabCfg = tabConfig.filter(t => t.tab === d.tab)[0] || {}
+        if (isNull(topics)) {
+            return <NoData/>
+        }
+        return topics.map(function(d) {
+            const tabCfg = tabs.filter(t => t.tab === d.tab)[0] || {}
             d.tabName = tabCfg.name || ''
             return <ListItem data={d} key={d.id}></ListItem>
         })
