@@ -57,7 +57,10 @@ const fetchTopics = (tab, page) => dispatch => {
         dispatch(setTopics(topics))
         dispatch(toggleLoading(false))
     })
-    .catch(e => dispatch(setTopics(null)))
+    .catch(e => {
+        dispatch(setTopics(null))
+        dispatch(toggleLoading(false))
+    })
 }
 
 // 获取文章详情
