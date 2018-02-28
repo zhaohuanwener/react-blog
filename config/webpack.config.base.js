@@ -8,6 +8,7 @@ module.exports = {
     entry: ['./src/main.js',
       //'webpack-dev-server/client?http://localhost:8080/'
     ],
+    devtool: '#source-map',
     output: {
         path: path.join(__dirname, '../dist'),
         filename: 'app.js',

@@ -5,15 +5,16 @@ var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
-var webpackConfig = require('../config/webpack.config.prod')
+var merge = require('webpack-merge')
+var baseWebpackConfig = require('../config/webpack.config.prod')
 
-var spinner = ora('building for production...')
-spinner.start()
+const allCfg = merge(baseWebpackConfig, config.build)
 
+console.log(baseWebpackConfig)
 rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
   if (err) throw err
-  webpack(webpackConfig, function (err, stats) {
-    spinner.stop()
+  webpack(baseWebpackConfig, function (err, stats) {
+    // spinner.stop()
     if (err) throw err
     process.stdout.write(stats.toString({
       colors: true,

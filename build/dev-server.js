@@ -22,4 +22,6 @@ const server = new WebpackDevServer(complier, {
     // }
 })
 
-server.listen(8080)
+const port = 8080
+
+server.listen(port, () => console.log('server listing on localhost:%d', 8080))

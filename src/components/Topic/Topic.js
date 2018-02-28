@@ -16,6 +16,7 @@ class Topic extends Component {
     componentDidMount() {
         const { getTopicDetail, match } = this.props
         const { id } = match.params
+        console.log('topic componentDidMount', match.params)
         getTopicDetail(id)
     }
 
@@ -25,7 +26,7 @@ class Topic extends Component {
             return <Loading show={true}></Loading>
         }
         if (_.isNull(topic)) {
-            return <NoData></NoData>
+            return <NoData/>
         }
         return <div>
             <div className="panel topic-content">
