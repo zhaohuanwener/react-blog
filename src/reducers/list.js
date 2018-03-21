@@ -1,9 +1,9 @@
-// { activeTab, tabSelect, pageClick }
 import {
     TOGGLE_PAGE,
     SET_TOPICS,
     TOGGLE_TAB,
-    TOGGLE_LOADING
+    TOGGLE_LOADING,
+    SET_PAGE_NUM
 } from '../actions/types'
 
 const defaultState = { activeTab: 'all', tabs:[{
@@ -22,9 +22,11 @@ const defaultState = { activeTab: 'all', tabs:[{
     tab: 'job',
     name: '招聘'
 }], loading: true }
+
+
 const list = (state = defaultState, action) => {
     switch (action.type) {
-        case TOGGLE_PAGE:
+        case SET_PAGE_NUM:
             return _.assign({}, state, {
                 page: action.page
             })

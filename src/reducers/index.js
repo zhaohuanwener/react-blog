@@ -8,6 +8,6 @@ export default {
     login,
     header,
     list,
-    topic
+    topic,
 }
 

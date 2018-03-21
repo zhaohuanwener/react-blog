@@ -17,7 +17,7 @@ const { Header, Body, Footer, Title } = Modal
 class Login extends Component {
   constructor(props) {
     super(props)
-    const { reg } = props
+    console.log(props)
     this.state = {
       username: '',
       pwd: '',
@@ -25,15 +25,9 @@ class Login extends Component {
       usernameValidationState: null,
       pwdValidationState: null,
       repPwdValidationState: null,
-      loading: false,
     }
   }
 
-  componentWillReceiveProps(props) {
-    const { reg, loading } = props
-    const title = !reg ? '登陆' : '注册'
-    this.setState({ title })
-  }
 
   resetState = () => {
     this.setState({
@@ -43,7 +37,6 @@ class Login extends Component {
       username: '',
       pwd: '',
       repPwd: '',
-      loading: false,
     })
   }
 
@@ -104,12 +97,13 @@ class Login extends Component {
       })
     }
     if (username && pwd) {
-      if (!reg) {
-        return this.showLoading()
-      }
-      if (repPwd) {
-        this.showLoading()
-      }
+      // if (!reg) {
+      //   return this.showLoading()
+      // }
+      // if (repPwd) {
+      //   this.showLoading()
+      // }
+      this.props.submit(username, pwd, repPwd)
     }
   }
 
@@ -129,8 +123,7 @@ class Login extends Component {
   }
 
   render() {
-    const { show } = this.props
-    const { title, loading } = this.state
+    const { show, loading, title } = this.props
     return <div>
       <Modal dialogClassName="static-modal" show={show} keyboard={false} backdrop={true} onHide={this.hide}>
         <Header closeButton={true}>
@@ -186,6 +179,7 @@ class Login extends Component {
 Login.defaultProps = {
   show: false,
   reg: false,
+  loading: false
 }
 
 Login.propTypes = {

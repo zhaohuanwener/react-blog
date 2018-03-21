@@ -35,7 +35,7 @@ class List extends Component {
     }
 
     render() {
-        const { tabs, activeTab, tabSelect, pageClick, match, topics, loading } = this.props
+        const { tabs, activeTab, tabSelect, pageClick, match, topics, loading, page } = this.props
         return <div className="topic-list">
             <ListNav tabs={tabs} activeTab={activeTab} tabSelect={tabSelect}></ListNav>
             <ListGroup>
@@ -43,7 +43,7 @@ class List extends Component {
                 {this.renderList(topics, tabs)}
             </ListGroup>
             <div className="pager-box">
-                <Pager active={2} total={20} pageClick={pageClick} tab={activeTab}/>
+                <Pager active={page} total={20} pageClick={pageClick} tab={activeTab}/>
             </div>
         </div>
     }
@@ -59,7 +59,7 @@ class List extends Component {
         return topics.map(function(d) {
             const tabCfg = tabs.filter(t => t.tab === d.tab)[0] || {}
             d.tabName = tabCfg.name || ''
-            return <ListItem data={d} key={d.id}></ListItem>
+            return <ListItem data={d} key={d.id}/>
         })
     }
 

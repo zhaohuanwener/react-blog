@@ -6,29 +6,22 @@ import {
     Button,
 } from 'react-bootstrap'
 
+import {
+    range
+} from 'lodash'
 
-class Pager extends Component {
-    render() {
-        const { total = 10, active = 1, max = 10, pageClick, tab } = this.props
-        const totalCount = total < max ? total : max
-        const items = []
-        for (let i = 1; i <= totalCount; i++) {
-            items.push(
-                <Button key={`page-${i}`} bsStyle={active === i ? 'primary' : 'default'} onClick={() => {
-                    pageClick(i, tab)
-                }}>{i}</Button>
-            )
-        }
-        return <ButtonToolbar>
-        <ButtonGroup>
-          {items}
-        </ButtonGroup>
-      </ButtonToolbar>;
-    }
-
-    renderItems = () => {
-
-    }
+export default ({total = 10, active = 1, max = 5, pageClick, tab}) => {
+    const totalCount = total < max ? total : max
+    const start = active >= 3 ? active - 2 : 1
+    const end = (active >= 3 ? active + 2 : max) + 1
+    const items = range(start,  end).map(i => <Button key={`page-${i}`} bsStyle={active === i ? 'primary' : 'default'} onClick={() => {
+        pageClick(i, tab)
+    }}
+    disabled={active === i}
+    >{i}</Button>)
+    return <ButtonToolbar>
+    <ButtonGroup>
+      {items}
+    </ButtonGroup>
+  </ButtonToolbar>;
 }
-
-export default Pager

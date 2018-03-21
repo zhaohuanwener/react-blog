@@ -1,27 +1,21 @@
 import { connect } from 'react-redux'
-import { getTopics, tabSelect } from '../actions'
+import { getTopics, tabSelect, setPage } from '../actions'
 import List from '../components/List/List'
 
-const mapStateToProps = (state) => {
-    return state.list
-}
+const mapStateToProps = state => state.list
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        pageClick: (page, tab) => {
-            console.log(page, tab)
-            // dispatch(pageClick(page))
-        },
-        getTopics: (tab, page) => {
-            console.log('get topics for tab', tab)
-            dispatch(getTopics(tab, page))
-        },
-        tabSelect: (tab) => {
-            dispatch(tabSelect(tab))
-            // dispatch(getTopics(tab, 1))
-        }
+const mapDispatchToProps = (dispatch, props) => ({
+    pageClick: (page, tab) => {
+        dispatch(getTopics(tab, page))
+        dispatch(setPage(page))
+    },
+    getTopics: (tab, page) => {
+        dispatch(getTopics(tab, page))
+    },
+    tabSelect: (tab) => {
+        dispatch(tabSelect(tab))
     }
-}
+})
 
 export default connect(
     mapStateToProps,

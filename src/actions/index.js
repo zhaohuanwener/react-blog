@@ -9,32 +9,39 @@ import {
     SET_TOPICS,
     TOGGLE_TAB,
     GET_TOPIC_DETAIL,
-    SET_TOPIC_DETAIL
+    SET_TOPIC_DETAIL,
+    SET_PAGE_NUM,
+    TOOGLE_LOGIN_LOADING
 } from './types'
 
 import {
     topicsGetter,
-    topicDetailGetter
+    topicDetailGetter,
+    loginSubmit
 } from './req'
 
-export const login = (text, userData) => ({
-    type: LOGIN,
-    userData
-})
+export const login = userData => {
+    return {
+        ...userData,
+        type: LOGIN,
+        isLogin: true
+    }
+}
 
-export const logout = (usernma) => ({
+export const logout = usernma => ({
     type: LOGOUT,
-    usernma
+    usernma,
+    isLogin: false
 })
 
-// 切换加载状态
-export const toogleLoading = () => ({type: TOOGLE_LOADING})
+// 切换登录框的按钮状态
+export const toggleLoginLoading = loading => ({type: TOOGLE_LOGIN_LOADING, loading})
 
 // 显示或隐藏登录框
-export const toogleLoginModal = () => ({type: TOOGLE_LOGIN_MODAL})
+export const toogleLoginModal = (show) => ({type: TOOGLE_LOGIN_MODAL, title: '登录', show})
 
 // 显示或隐藏注册框
-export const toogleRegModal = (reg) => ({ type: TOOGLE_REG_MODAL, reg })
+export const toogleRegModal = (reg) => ({ type: TOOGLE_REG_MODAL, reg, title: '注册' })
 
 // 切换登录框的title
 export const toggleLoginTitle = (title) => ({ type: TOOGLE_LOGIN_MODAL_TITLE, title })
@@ -64,16 +71,32 @@ const fetchTopics = (tab, page) => dispatch => {
 }
 
 // 获取文章详情
-const fetchTopicDetail = (id) => dispatch => {
+const fetchTopicDetail = id => dispatch => {
     return topicDetailGetter(id)
     .then(topic => dispatch(setTopicDetail(topic)))
     .catch(e => dispatch(setTopics(null)))
 }
 
+
 export const toggleLoading = show => ({ type: TOGGLE_LOADING, show })
 
-export const getTopics = (tab, page) => (dispatch, getState) => dispatch(fetchTopics(tab, page))
+export const getTopics = (tab, page) => dispatch => dispatch(fetchTopics(tab, page))
 
-export const getTopicDetail = (id) => (dispatch, getState) => dispatch(fetchTopicDetail(id))
+export const getTopicDetail = id => dispatch => dispatch(fetchTopicDetail(id))
+
+export const setPage = page => ({type: SET_PAGE_NUM, page })
 
 
+export const userLogin = (uname, pwd1, pwd2) => dispatch => {
+    dispatch(toggleLoginLoading(true))
+    return loginSubmit(uname, pwd1, pwd2)
+    .then(status => {
+        setTimeout(() => {
+            dispatch(toogleLoginModal(false))
+            dispatch(toggleLoginLoading(false))
+            dispatch(login({
+                userName: uname
+            }))
+        }, 1000)
+    })
+}
