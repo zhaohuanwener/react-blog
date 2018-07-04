@@ -7,22 +7,36 @@ const proxy = require('./proxy')
 
 
 module.exports = merge(baseWebpackConfig, {
-    devtool: '#cheap-module-eval-source-map',
-    plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: '"development"'
-          }
-      }),
-        // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        // https://github.com/ampedandwired/html-webpack-plugin
-      new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: 'index.html',
-          inject: true
-        }),
-        // new webpack.NoEmitOnErrorsPlugin()
-      ]
+  devtool: '#cheap-module-eval-source-map',
+  devServer: {
+    hot: true,
+    stats: 'errors-only',
+    compress: false,
+    inline: true,
+    proxy,
+    overlay: true,
+    historyApiFallback: true,
+    // set (app) {
+    //     app.use('*', (req, res) => {
+
+    //     })
+    // }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    }),
+    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    // https://github.com/ampedandwired/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    }),
+    // new webpack.NoEmitOnErrorsPlugin()
+  ]
 })

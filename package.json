@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "npm test",
+    "dev": "webpack-dev-server --hot --config ./config/webpack.config.dev.js",
     "start": "node ./build/dev-server.js",
     "build": "node ./build/build.js"
   },
@@ -27,6 +28,7 @@
     "babel-loader": "^6.2.10",
     "babel-plugin-import": "^1.6.2",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-2": "^6.24.1",
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.7",
