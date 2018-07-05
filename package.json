@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "npm test",
-    "dev": "webpack-dev-server --hot --config ./config/webpack.config.dev.js",
+    "dev": "webpack-dev-server --hot --config ./config/webpack.config.dev.js --color",
     "start": "node ./build/dev-server.js",
     "build": "node ./build/build.js"
   },

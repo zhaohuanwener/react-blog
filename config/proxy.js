@@ -2,8 +2,8 @@
 const target = 'http://localhost:8888';
 
 const urlList = [
-  '/app',
-  '/store'
+  '/topics',
+  '/user'
 ];
 const proxyTable = {};
 
@@ -15,6 +15,5 @@ urlList.forEach(function(u) {
   proxyTable[u].changeOrigin = true;
 });
 
-module.exports = {
-  '**': target
-}
+
+module.exports = proxyTable

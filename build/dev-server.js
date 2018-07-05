@@ -9,17 +9,16 @@ const complier = webpack(config)
 
 const server = new WebpackDevServer(complier, {
     hot: true,
-    stats: 'errors-only',
+    // stats: 'errors-only',
     compress: false,
     inline: true,
     proxy,
     overlay: true,
     historyApiFallback: true,
-    // set (app) {
-    //     app.use('*', (req, res) => {
-
-    //     })
-    // }
+    progress: true,
+    after (app) {
+        app.use(require('webpack-hot-middleware'))
+    }
 })
 
 const port = 8080

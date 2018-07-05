@@ -2,33 +2,36 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.config.base')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 const proxy = require('./proxy')
 
+const PORT = 8080
 
-
-module.exports = merge(baseWebpackConfig, {
+const config = merge(baseWebpackConfig, {
+  entry: [
+    `webpack-dev-server/client?http://localhost:${PORT}/`
+  ],
   devtool: '#cheap-module-eval-source-map',
-  // env: '"development"',
   devServer: {
-    hot: true,
-    // stats: 'errors-only',
-    compress: false,
-    inline: true,
-    proxy,
-    overlay: true,
+    clientLogLevel: 'warning',
     historyApiFallback: true,
-    // set (app) {
-    //     app.use('*', (req, res) => {
-
-    //     })
-    // }
+    hot: true,
+    contentBase: false, // since we use CopyWebpackPlugin.
+    compress: true,
+    port: PORT,
+    open: false,
+    overlay: true,
+    publicPath: '/',
+    proxy,
+    watchOptions: {
+      poll: false,
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
+    new webpack.NamedModulesPlugin(),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -41,3 +44,5 @@ module.exports = merge(baseWebpackConfig, {
     // new webpack.NoEmitOnErrorsPlugin()
   ]
 })
+
+module.exports = config
