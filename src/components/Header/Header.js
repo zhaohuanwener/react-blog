@@ -43,7 +43,7 @@ class Header extends Component {
         const { isLogin, userName } = this.props
         if (!isLogin) {
             return <Nav pullRight>
-                     <NavItem eventKey={ 1 } href="#" onClick={this.showLogin}>登陆cdscds</NavItem>
+                     <NavItem eventKey={ 1 } href="#" onClick={this.showLogin}>登陆</NavItem>
                      <NavItem eventKey={ 2 } href="#" onClick={this.showReg}>注册</NavItem>
                    </Nav>
         }

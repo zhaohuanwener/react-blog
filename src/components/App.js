@@ -12,12 +12,12 @@ class App extends Component {
 
     render() {
         const { history } = this.props
-        return <BrowserRouter>
+        return <HashRouter>
              <div>
                 <Header/>
                 <Body/>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     }
 }
 

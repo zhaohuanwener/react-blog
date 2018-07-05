@@ -22,7 +22,12 @@ import {
 
 class List extends Component {
     componentDidMount() {
-        const { getTopics, activeTab } = this.props
+        const { getTopics, activeTab, match, tabSelect } = this.props
+        const { tab } = match.params
+        if (tab) {
+            tabSelect(tab)
+            return getTopics(tab, 1)
+        }
         getTopics(activeTab, 1)
     }
 

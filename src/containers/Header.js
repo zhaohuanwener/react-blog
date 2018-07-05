@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toogleRegModal, toogleLoginModal, toogleLoading, userLogin, toggleLoginLoading } from '../actions'
+import { toogleRegModal, toogleLoginModal, toggleLoading, userLogin, toggleLoginLoading } from '../actions'
 import Header from '../components/Header/Header'
 
 const mapStateToProps = state => state.header
@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(toogleLoginModal(show))
         },
         toggoleLoading: () => {
-            dispatch(toogleLoading())
+            dispatch(toggleLoading())
         },
         loginSubmit: (uname, pwd, pwd2) => {
             dispatch(userLogin(uname, pwd, pwd2))
