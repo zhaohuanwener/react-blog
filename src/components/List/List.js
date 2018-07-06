@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {
-    Nav,
-    NavItem,
     ListGroup,
 } from 'react-bootstrap'
 import {
@@ -16,7 +14,8 @@ import Loading from '../Loading/Loading'
 import NoData from '../NoData/NoData'
 import {
     isUndefined,
-    isNull
+    isNull,
+    isEmpty
 } from 'lodash'
 
 
@@ -40,7 +39,7 @@ class List extends Component {
     }
 
     render() {
-        const { tabs, activeTab, tabSelect, pageClick, match, topics, loading, page } = this.props
+        const { tabs, activeTab, tabSelect, pageClick, topics, loading, page } = this.props
         return <div className="topic-list">
             <ListNav tabs={tabs} activeTab={activeTab} tabSelect={tabSelect}></ListNav>
             <ListGroup>
@@ -59,12 +58,15 @@ class List extends Component {
             topics = []
         }
         if (isNull(topics)) {
+            return ''
+        }
+        if (isEmpty(topics)) {
             return <NoData/>
         }
         return topics.map(function(d) {
             const tabCfg = tabs.filter(t => t.tab === d.tab)[0] || {}
             d.tabName = tabCfg.name || ''
-            return <ListItem data={d} key={d.id}/>
+            return <ListItem data={d} key={d._id}/>
         })
     }
 

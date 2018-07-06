@@ -7,7 +7,6 @@ const mapStateToProps = ({topic}) => topic
 const mapDispatchToProps = (dispatch, props) => {
     return {
         getTopicDetail: (id) => {
-            console.log('getTopicDetail ======== >', id)
             dispatch(getTopicDetail(id))
         }
     }

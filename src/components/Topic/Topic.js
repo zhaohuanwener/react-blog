@@ -16,7 +16,6 @@ class Topic extends Component {
     componentDidMount() {
         const { getTopicDetail, match } = this.props
         const { id } = match.params
-        console.log('topic componentDidMount', match.params)
         getTopicDetail(id)
     }
 

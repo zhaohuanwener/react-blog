@@ -58,14 +58,14 @@ const setTopicDetail = topic => ({type: SET_TOPIC_DETAIL, topic})
 // 获取文章列表
 const fetchTopics = (tab, page) => dispatch => {
     dispatch(toggleLoading(true))
-    dispatch(setTopics([]))
+    dispatch(setTopics(null))
     return topicsGetter(tab, page)
     .then(topics => {
         dispatch(setTopics(topics))
         dispatch(toggleLoading(false))
     })
-    .catch(e => {
-        dispatch(setTopics(null))
+    .catch(() => {
+        dispatch(setTopics([]))
         dispatch(toggleLoading(false))
     })
 }
@@ -73,8 +73,13 @@ const fetchTopics = (tab, page) => dispatch => {
 // 获取文章详情
 const fetchTopicDetail = id => dispatch => {
     return topicDetailGetter(id)
-    .then(topic => dispatch(setTopicDetail(topic)))
-    .catch(e => dispatch(setTopics(null)))
+        .then(result => {
+            const topic = _.extend({}, {
+                replies: result.comment
+            }, result.data)
+        dispatch(setTopicDetail(topic))
+    })
+    .catch(() => dispatch(setTopics(null)))
 }
 
 

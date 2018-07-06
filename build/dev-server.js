@@ -16,9 +16,6 @@ const server = new WebpackDevServer(complier, {
     overlay: true,
     historyApiFallback: true,
     progress: true,
-    after (app) {
-        app.use(require('webpack-hot-middleware'))
-    }
 })
 
 const port = 8080

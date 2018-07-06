@@ -24,7 +24,7 @@ class Item extends Component {
                 {this.renderTab(top, tabName, good)}
             </span>
             <span className="item-title">
-                <Link to={`/topic/${data.id}`}>
+                <Link to={`/topic/${data._id}`}>
                     {data.title}
                 </Link>
             </span>
