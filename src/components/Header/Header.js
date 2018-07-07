@@ -64,7 +64,7 @@ class Header extends Component {
                         </a>
                     </li>
                 </ul>
-            { this.setUserBox() }
+            {/* { this.setUserBox() } */}
             </Navbar>
             <Login show={ this.props.showModal }
             reg={ this.props.reg } 

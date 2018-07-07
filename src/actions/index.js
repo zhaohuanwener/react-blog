@@ -73,12 +73,7 @@ const fetchTopics = (tab, page) => dispatch => {
 // 获取文章详情
 const fetchTopicDetail = id => dispatch => {
     return topicDetailGetter(id)
-        .then(result => {
-            const topic = _.extend({}, {
-                replies: result.comment
-            }, result.data)
-        dispatch(setTopicDetail(topic))
-    })
+    .then(topic => dispatch(setTopicDetail(topic)))
     .catch(() => dispatch(setTopics(null)))
 }
 
